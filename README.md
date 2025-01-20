@@ -13,6 +13,8 @@ etl with RapidKL GTFS API data monitor
 - fact_trips (accumulated) ✅
 - dim_drivers (static) ✅
 - dim_busses (static) ✅
-- fact_bus_alarm (accumulated)
-- fact_driver_alarm (accumulated)
+- fact_driving_behavior (static daily) ✅
 - fact_history_alarm (accumulated)
+
+**Improvement**
+- data integrity during table insertion (bug from Pandas `.to_sql()`)
