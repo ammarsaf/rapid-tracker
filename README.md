@@ -9,10 +9,10 @@ etl with RapidKL GTFS API data monitor
 - fetch_db() ✅
 
 **Database**
-- fact_daily_trip
+- fact_daily_trip ✅
 - fact_trips
-- dim_drivers
-- dim_busses
+- dim_drivers ✅
+- dim_busses ✅
 - fact_bus_alarm
 - fact_driver_alarm
 - fact_history_alarm 
