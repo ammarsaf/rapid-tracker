@@ -5,8 +5,8 @@ etl with RapidKL GTFS API data monitor
 
 **Functions**
 - request_api_rapidkl() ✅
-- query_db()
-- fetch_db()
+- query_db() ✅
+- fetch_db() ✅
 
 **Database**
 - fact_daily_trip
