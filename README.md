@@ -27,4 +27,4 @@ etl with RapidKL GTFS API data monitor
 
 **Improvement**
 - Data integrity during table insertion (bug from Pandas `.to_sql()`)
-- Just use native SQL with using `df.to_sql()` (its possible)
+- Just use native SQL without using `df.to_sql()` (its possible)
