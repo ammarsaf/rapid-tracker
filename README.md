@@ -17,9 +17,9 @@ etl with RapidKL GTFS API data monitor
 - fact_history_alarm (accumulated) 
 - fact_bus_maintenance (aggregate daily) ✅
 
-**Containers**
+**Infra**
 - Postgres - database server ✅
-- Airflow - automate table creation 
+- Apache Airflow - automate table creation 
 - Dbt - modularize sql script
 - Apache Superset - visualize data
 
