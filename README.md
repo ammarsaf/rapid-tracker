@@ -19,10 +19,12 @@ etl with RapidKL GTFS API data monitor
     - code static (alter require for automation)
 
 **Infra**
+- Docker - containerize the following tools
 - Postgres - database server
 - Airflow - automate table creation 
 - Dbt - modularize sql script
 - Apache Superset - visualize data
 
 **Improvement**
-- data integrity during table insertion (bug from Pandas `.to_sql()`)
+- Data integrity during table insertion (bug from Pandas `.to_sql()`)
+- Just use native SQL with using `df.to_sql()` (its possible)
