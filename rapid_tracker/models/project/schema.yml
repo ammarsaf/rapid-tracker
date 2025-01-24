@@ -1,0 +1,8 @@
+version: 1
+
+models:
+  - name:
+    columns:
+      - name:
+        test:
+          -
