@@ -14,7 +14,7 @@ etl with RapidKL GTFS API data monitor
 - dim_drivers (static) ✅
 - dim_busses (static) ✅
 - fact_driving_behavior (aggregate daily) ✅
-- fact_history_alarm (accumulated) 
+- fact_history_alarm (accumulated) ✅
 - fact_bus_maintenance (aggregate daily) ✅
 
 **Infra**
