@@ -16,14 +16,14 @@ pip install -r requirements.txt
 
 3. Dbt path setup
 
-DBT_PROJECT_DIR
-DBT_PROFILES_DIR
+```
+export DBT_PROJECT_DIR=~/.dbt
+export DBT_PROFILES_DIR/<project>/<working>/<directory>
+```
 
 3. Monitor visualization
 
-- Go to ---- 
-
-
+- Go to ---- localhost:xxx
 
 
 # TODO
@@ -52,10 +52,14 @@ DBT_PROFILES_DIR
 - fact_bus_maintenance (1 day) [order 3]
 
 **Infra**
-- Postgres - database server ✅
-- Apache Airflow - automate table creation 
-- Dbt - modularize sql script
-- Apache Superset - visualize data
+- Docker container 
+    - Postgres - database server ✅
+    - Apache Airflow - automate table creation 
+    - Apache Superset - visualize data
+- Dbt 
+    - modularize sql script ✅
+    - Dbt schema 
+
 
 **Improvement**
 - Data integrity during table insertion (bug from Pandas `.to_sql()`)
