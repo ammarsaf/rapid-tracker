@@ -1,5 +1,5 @@
 # rapid-tracker
-etl with RapidKL GTFS API data monitor 
+ELT with RapidKL GTFS real-time API data monitor 
 
 # TODO
 
@@ -14,8 +14,17 @@ etl with RapidKL GTFS API data monitor
 - dim_drivers (static) ✅
 - dim_busses (static) ✅
 - fact_driving_behavior (aggregate daily) ✅
-- fact_history_alarm (accumulated) ✅
+- fact_history_alarm (aggregate daily) ✅
 - fact_bus_maintenance (aggregate daily) ✅
+
+**Automate**
+- fact_daily_trip (30s) [order 1]
+- fact_trips (30s) [order 2]
+- dim_drivers 
+- dim_busses 
+- fact_driving_behavior (1 day) [order 3]
+- fact_history_alarm (1 day) [order 3]
+- fact_bus_maintenance (1 day) [order 3]
 
 **Infra**
 - Postgres - database server ✅
