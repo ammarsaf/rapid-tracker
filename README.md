@@ -1,6 +1,31 @@
 # rapid-tracker
 ELT with RapidKL GTFS real-time API data monitor 
 
+# Get Started
+
+1. Create virtualenv and install packages
+```
+python3 -m venv venvRapid
+source venvRapid/bin/activate
+pip install -r requirements.txt
+```
+
+2. Setup container 
+
+`docker compose up`
+
+3. Dbt path setup
+
+DBT_PROJECT_DIR
+DBT_PROFILES_DIR
+
+3. Monitor visualization
+
+- Go to ---- 
+
+
+
+
 # TODO
 
 **Functions**
