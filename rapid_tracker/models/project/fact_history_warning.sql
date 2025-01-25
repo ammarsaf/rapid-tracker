@@ -1,5 +1,8 @@
+{{
+    config(materialized='view')
+}}
 SELECT 
     driver_name, 
     dates_warning, MAX(date) as date
-FROM rapidkl.warning_cumulated
+FROM {{ ref('fact_history_cumulated') }}
 GROUP BY driver_name , dates_warning;

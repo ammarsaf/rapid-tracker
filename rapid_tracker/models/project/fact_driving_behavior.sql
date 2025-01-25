@@ -1,3 +1,7 @@
+{{
+    config(materialized='table')
+}}
+
 WITH speed_count AS (
     SELECT 
         DATE(timestamp) as date, 
@@ -7,7 +11,7 @@ WITH speed_count AS (
             WHEN speed > 60 THEN 1
             ELSE 0
         END count_breach_speed
-    FROM rapidkl.fact_trips
+    FROM {{ ref('fact_trips') }}
     WHERE DATE(timestamp) = CURRENT_DATE
 )
 SELECT 

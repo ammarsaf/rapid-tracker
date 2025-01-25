@@ -1,4 +1,6 @@
-INSERT INTO rapidkl.fact_trips
+{{
+    config(materialized='table') 
+}}
 SELECT 
     CAST(timestamp AS TIMESTAMP), 
     trip_id, 

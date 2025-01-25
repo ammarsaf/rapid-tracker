@@ -53,7 +53,9 @@ export DBT_PROFILES_DIR/<project>/<working>/<directory>
 
 **Infra**
 - Docker container 
-    - Postgres - database server ✅
+    - Postgres 
+        - database server
+        - dev, stage (schema)
     - Apache Airflow - automate table creation 
     - Apache Superset - visualize data
 - Dbt 

@@ -1,3 +1,7 @@
+{{
+	config(materialized='view')
+}}
+
 WITH 
 date_vars AS (
     SELECT 
@@ -14,13 +18,13 @@ driver_behavior AS (
 	        WHEN speed > 60 THEN 1
 	        ELSE 0
 	    END count_breach_speed
-	FROM rapidkl.fact_trips
+	FROM {{ ref('fact_trips')  }}
 	) hhh
 	WHERE count_breach_speed > 0
 ),
 yesterday AS (
 	SELECT *
-	FROM rapidkl.warning_cumulated
+	FROM {{ ref('warning_cumulated') }}
 	WHERE date = DATE(SELECT yesterday FROM date_vars)
 ), 
 today AS  (
