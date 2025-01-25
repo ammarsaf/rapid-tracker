@@ -172,3 +172,7 @@ cython_debug/
 
 # file
 *.csv
+
+# dbt
+.user.yml
+profiles.yml

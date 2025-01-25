@@ -18,7 +18,7 @@ pip install -r requirements.txt
 
 ```
 export DBT_PROJECT_DIR=~/.dbt
-export DBT_PROFILES_DIR/<project>/<working>/<directory>
+export DBT_PROFILES_DIR=/<project>/<working>/<directory>
 ```
 
 3. Monitor visualization
@@ -54,13 +54,13 @@ export DBT_PROFILES_DIR/<project>/<working>/<directory>
 **Infra**
 - Docker container 
     - Postgres 
-        - database server
-        - dev, stage (schema)
+        - database server ✅
+        - dev, stage (schema) ✅
     - Apache Airflow - automate table creation 
     - Apache Superset - visualize data
 - Dbt 
     - modularize sql script ✅
-    - Dbt schema 
+    - Dbt schema ✅
 
 
 **Improvement**
