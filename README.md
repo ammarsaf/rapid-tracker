@@ -56,7 +56,7 @@ export DBT_PROFILES_DIR=/<project>/<working>/<directory>
     - Postgres 
         - database server ✅
         - dev, stage (schema) ✅
-    - Apache Airflow - automate table creation 
+    - Dagster - automate table creation 
     - Apache Superset - visualize data
 - Dbt 
     - modularize sql script ✅
