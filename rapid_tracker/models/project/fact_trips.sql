@@ -11,9 +11,9 @@ SELECT
     speed
 FROM (
     SELECT *
-    FROM rapidkl.fact_daily_trip fdt
-    JOIN rapidkl.dim_busses vv 
+    FROM dev.fact_daily_trip fdt
+    JOIN dev.dim_busses vv 
     ON fdt.vehicle_id = vv.bus_plates
-    JOIN rapidkl.dim_drivers dd
+    JOIN dev.dim_drivers dd
     ON vv.bus_id = dd.driver_id
-) jjj;
+) jjj

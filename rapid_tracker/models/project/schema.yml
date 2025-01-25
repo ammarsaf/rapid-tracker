@@ -58,7 +58,7 @@ models:
         test:
           - not_null
 
-  - name: fact_driving_behavior
+  - name: fact_bus_maintenance
     columns:
       - name: date
         test:

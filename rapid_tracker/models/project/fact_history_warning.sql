@@ -3,6 +3,6 @@
 }}
 SELECT 
     driver_name, 
-    dates_warning, MAX(date) as date
+    date_warning, MAX(date) as date
 FROM {{ ref('fact_history_cumulated') }}
-GROUP BY driver_name , dates_warning;
+GROUP BY driver_name , date_warning

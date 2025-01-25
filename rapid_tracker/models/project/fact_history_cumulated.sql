@@ -25,13 +25,13 @@ driver_behavior AS (
 yesterday AS (
 	SELECT *
 	FROM {{ ref('warning_cumulated') }}
-	WHERE date = DATE(SELECT yesterday FROM date_vars)
+	WHERE date = (SELECT yesterday FROM date_vars)
 ), 
 today AS  (
 	SELECT 
 		*
 	FROM driver_behavior
-	WHERE date = DATE(SELECT today FROM date_vars)
+	WHERE date = (SELECT today FROM date_vars)
 	GROUP BY date, bus_plates, driver_name, count_breach_speed 
 )
 SELECT 
@@ -44,4 +44,4 @@ SELECT
 	COALESCE (t.date, y.date + INTERVAL '1 day') as date
 FROM today t
 FULL OUTER JOIN yesterday y
-ON t.driver_name = y.driver_name;
+ON t.driver_name = y.driver_name

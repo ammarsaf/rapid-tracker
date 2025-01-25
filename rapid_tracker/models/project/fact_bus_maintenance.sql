@@ -2,8 +2,7 @@
     config(materialized='table')
 }}
 
-WITH 
-date_vars AS (
+WITH date_vars AS (
     SELECT 
         CURRENT_DATE AS today,
         DATE(CURRENT_DATE - INTERVAL '1 day') AS yesterday
@@ -16,7 +15,7 @@ geo_table AS (
             ROW_NUMBER () OVER (PARTITION BY license_plate ORDER BY timestamp ASC) as row_number, 
             LAG (longitude) OVER (PARTITION BY license_plate ORDER BY timestamp ASC) as prev_longitude, 
             LAG (latitude) OVER (PARTITION BY license_plate ORDER BY timestamp ASC) as prev_latitude
-    FROM rapidkl.fact_daily_trip --- TODO
+    FROM dev.fact_daily_trip --- TODO
 ), 
 calculate_distance AS (
     SELECT timestamp, license_plate, 
@@ -27,14 +26,14 @@ calculate_distance AS (
                 POWER(SIN(RADIANS(longitude - prev_longitude) / 2), 2)
             )) AS distance_km
     FROM geo_table
-)
+),
 geo_today AS (
     SELECT 
             license_plate , 
             DATE(timestamp),
             SUM(distance_km) as total_distance_km
     FROM calculate_distance
-    WHERE DATE(timestamp) = DATE(SELECT today FROM date_vars) -- today
+    WHERE DATE(timestamp) = (SELECT today FROM date_vars) -- today
     GROUP BY license_plate, distance_km, timestamp
     ), 
 geo_yesterday AS (
@@ -43,7 +42,7 @@ geo_yesterday AS (
             DATE(timestamp),
             SUM(distance_km) as total_distance_km
     FROM calculate_distance
-    WHERE DATE(timestamp) = DATE(SELECT yesterday FROM date_vars) -- yesterday
+    WHERE DATE(timestamp) = (SELECT yesterday FROM date_vars) -- yesterday
     GROUP BY license_plate, distance_km, timestamp
     ), 
 total_distance_today AS (
