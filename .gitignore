@@ -176,3 +176,4 @@ cython_debug/
 # dbt
 .user.yml
 profiles.yml
+/logs
