@@ -30,5 +30,5 @@ if __name__ == "__main__":
     ).deploy(
         name="rapid-deployment",
         work_pool_name="rapid-work-pool",
-        cron="0 * * * *",  # Run every hour
+        # cron="* * * * * sleep 30",  # Run every hour
     )
