@@ -2,6 +2,7 @@ import os
 import psycopg2
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
+import pandas as pd
 from pathlib import Path
 
 load_dotenv(Path(f"{os.getcwd()}/.env"), override=True, verbose=True)
