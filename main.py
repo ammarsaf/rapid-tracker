@@ -8,8 +8,6 @@ from prefect.automations import Automation
 from prefect.events.schemas.automations import EventTrigger
 from prefect_dbt.cli.commands import DbtCoreOperation
 
-engine = connect_db_v2()
-
 
 @task(
     name="Rapidkl API fetch",
@@ -22,14 +20,22 @@ def task_1_fetch_api():
     df_fetch = request_api_rapidkl("rapid-bus-kl", datetime.now())
     logger = get_run_logger()
     logger.info(f"Dataframe shape 1 {df_fetch.shape}")
-    df_fetch.to_sql(
-        "fact_daily_trip", con=engine, schema="dev", if_exists="append", index=False
-    )
-    logger.info(f"fact_daily_trip successfully append")
-    emit_event(
-        event="rapidkl.data.inserted",
-        resource={"prefect.resorce.id": "rapidkl.resource"},
-    )
+    try:
+        engine = connect_db_v2()
+        logger.info("Database successfully connected")
+    except:
+        logger.error("Database failed to connect")
+    try:
+        df_fetch.to_sql(
+            "fact_daily_trip", con=engine, schema="dev", if_exists="append", index=False
+        )
+        logger.info(f"fact_daily_trip successfully append")
+        emit_event(
+            event="rapidkl.data.inserted",
+            resource={"prefect.resorce.id": "rapidkl.resource"},
+        )
+    except:
+        logger.error("Database insertion has failed")
 
 
 @task
