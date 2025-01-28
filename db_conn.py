@@ -67,3 +67,8 @@ def fetch_db(query: str):
         return pd.read_sql_query(query, con=engine)
     except Exception as e3:
         print("ERROR (3): ", e3)
+
+
+if "__main__" == __name__:
+    connect_db()
+    connect_db_v2()

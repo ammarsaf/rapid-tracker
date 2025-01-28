@@ -1,5 +1,5 @@
 from pipeline import request_api_rapidkl
-from db_conn import connect_db
+from db_conn import connect_db, connect_db_v2
 from datetime import datetime
 from prefect import flow, task
 from prefect.logging import get_run_logger
@@ -8,7 +8,7 @@ from prefect.automations import Automation
 from prefect.events.schemas.automations import EventTrigger
 from prefect_dbt.cli.commands import DbtCoreOperation
 
-engine = connect_db()
+engine = connect_db_v2()
 
 
 @task(
