@@ -7,6 +7,11 @@ from prefect.events import emit_event
 from prefect.automations import Automation
 from prefect.events.schemas.automations import EventTrigger
 from prefect_dbt.cli.commands import DbtCoreOperation
+from dotenv import load_dotenv
+from pathlib import Path
+import os
+
+load_dotenv(Path(f"{os.getcwd()}/.env"), override=True, verbose=True)
 
 
 @task(
@@ -22,20 +27,27 @@ def task_1_fetch_api():
     logger.info(f"Dataframe shape 1 {df_fetch.shape}")
     try:
         engine = connect_db_v2()
-        logger.info("Database successfully connected")
-    except:
+        print("DEBUG:blablablablablablablablalb")
+    except Exception as e1:
+        logger.error("E1: ", e1)
         logger.error("Database failed to connect")
     try:
         df_fetch.to_sql(
             "fact_daily_trip", con=engine, schema="dev", if_exists="append", index=False
         )
         logger.info(f"fact_daily_trip successfully append")
+    except Exception as e2:
+        logger.error("E2: ", e2)
+        logger.error("Database insertion has failed")
+    try:
         emit_event(
             event="rapidkl.data.inserted",
             resource={"prefect.resorce.id": "rapidkl.resource"},
         )
-    except:
-        logger.error("Database insertion has failed")
+        logger.info("Event successfully created")
+    except Exception as e3:
+        logger.error("E3: ", e3)
+        logger.error("Event failed to create")
 
 
 @task
@@ -45,7 +57,7 @@ def task_2_trigger_dbt_flow():
         logger = get_run_logger()
         result = DbtCoreOperation(
             commands=["dbt build -t dev"],
-            project_dir="rapid-tracker",
+            project_dir="rapid_tracker",
             profiles_dir="/rapid-tracker/rapid_tracker",
         ).run()
         logger.info("INFO: DBT completed")

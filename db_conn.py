@@ -11,6 +11,7 @@ DB_NAME = os.getenv("DB_NAME")
 DB_PORT = os.getenv("DB_PORT")
 DB_USERNAME = os.getenv("DB_USERNAME")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
+print(DB_HOST, DB_NAME, DB_PORT, DB_USERNAME, DB_PASSWORD)
 
 
 def connect_db():
@@ -50,7 +51,7 @@ def query_db(query: str):
 def connect_db_v2():
     try:
         database = f"postgresql+psycopg2://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-        print(database)
+        print("DEBUG: ", database)
         engine = create_engine(database)
         print("STATUS: DB connection(2) succeed")
         return engine
