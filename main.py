@@ -55,14 +55,14 @@ def task_2_trigger_dbt():
     try:
         logger = get_run_logger()
         result = DbtCoreOperation(
-            commands=["dbt build -t dev"],
-            project_dir="rapid_tracker",
+            commands=["dbt build"],
+            project_dir="/rapid-tracker/rapid_tracker",
             profiles_dir="/rapid-tracker/rapid_tracker",
         ).run()
         logger.info("DBT insertion completed")
         return result
     except Exception as e:
-        logger.error(f"Dbt Task : {e}")
+        logger.error(f"Dbt Task ERROR: {e}")
 
 
 @flow(log_prints=True)
