@@ -42,7 +42,7 @@ def task_1_fetch_api():
     try:
         emit_event(
             event="rapidkl.data.inserted",
-            resource={"prefect.resorce.id": "rapidkl.resource"},
+            resource={"prefect.resource.id": "rapidkl.raw.insertion"},
         )
         logger.info("Event successfully created")
     except Exception as e3:
