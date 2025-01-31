@@ -1,0 +1,28 @@
+rapid_tracker:
+  target: dev
+  env_file:
+    - .env
+  outputs:
+    prod:
+      type: postgres
+      host: localhost
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+      port: 54320
+      dbname: rapidkl # or database instead of dbname
+      schema: prod
+      threads: 1 # [optional, 1 or more]
+      keepalives_idle: 0 # default 0, indicating the system default. See below
+      connect_timeout: 60 # default 10 seconds
+
+    dev:
+      type: postgres
+      host: localhost
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+      port: 54320
+      dbname: rapidkl # or database instead of dbname
+      schema: dev
+      threads: 1 # [optional, 1 or more]
+      keepalives_idle: 0 # default 0, indicating the system default. See below
+      connect_timeout: 60 # default 10 seconds

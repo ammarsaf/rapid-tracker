@@ -175,6 +175,6 @@ cython_debug/
 
 # dbt
 .user.yml
-profiles.yml
+# profiles.yml
 /logs
 /rapid-tracker-dev

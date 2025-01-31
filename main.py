@@ -27,7 +27,6 @@ def task_1_fetch_api():
     logger.info(f"Dataframe shape 1 {df_fetch.shape}")
     try:
         engine = connect_db_v2()
-        print("DEBUG:blablablablablablablablalb")
     except Exception as e1:
         logger.error("E1: ", e1)
         logger.error("Database failed to connect")
@@ -51,7 +50,7 @@ def task_1_fetch_api():
 
 
 @task
-def task_2_trigger_dbt_flow():
+def task_2_trigger_dbt():
     logger = get_run_logger()
     try:
         logger = get_run_logger()
@@ -60,13 +59,13 @@ def task_2_trigger_dbt_flow():
             project_dir="rapid_tracker",
             profiles_dir="/rapid-tracker/rapid_tracker",
         ).run()
-        logger.info("INFO: DBT completed")
+        logger.info("DBT insertion completed")
         return result
     except Exception as e:
-        logger.error(f"ERROR: {e}")
+        logger.error(f"Dbt Task : {e}")
 
 
 @flow(log_prints=True)
 def main_flow():
     task_1_fetch_api()
-    task_2_trigger_dbt_flow()
+    task_2_trigger_dbt()

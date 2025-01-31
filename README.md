@@ -17,8 +17,16 @@ pip install -r requirements.txt
 3. Dbt path setup
 
 ```
-export DBT_PROJECT_DIR=~/.dbt
+export DBT_PROJECT_DIR=/<project>/<working>/<dbt_directory>
 export DBT_PROFILES_DIR=/<project>/<working>/<directory>
+```
+
+4. Develop Prefect locally
+```
+prefect server start 
+python deploy.py
+prefect work-pool create --type process my-work-pool # if not create, else ignore
+prefect deployment run '<flow_function>/<deployment_name>'
 ```
 
 3. Monitor visualization
