@@ -56,8 +56,8 @@ def task_2_trigger_dbt():
         logger = get_run_logger()
         result = DbtCoreOperation(
             commands=["dbt build"],
-            project_dir="/rapid-tracker/rapid_tracker",
-            profiles_dir="/rapid-tracker/rapid_tracker",
+            project_dir="/rapid-tracker/rapid_tracker/",
+            profiles_dir="/rapid-tracker/rapid_tracker/",
         ).run()
         logger.info("DBT insertion completed")
         return result
