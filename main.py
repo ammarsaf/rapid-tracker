@@ -1,4 +1,4 @@
-from pipeline import request_api_rapidkl
+from pipeline import request_api_rapidkl, rename_col
 from db_conn import connect_db, connect_db_v2
 from datetime import datetime
 from prefect import flow, task
@@ -22,7 +22,7 @@ load_dotenv(Path(f"{os.getcwd()}/.env"), override=True, verbose=True)
     log_prints=True,
 )
 def task_1_fetch_api():
-    df_fetch = request_api_rapidkl("rapid-bus-kl", datetime.now())
+    df_fetch = rename_col(request_api_rapidkl("rapid-bus-kl", datetime.now()))
     logger = get_run_logger()
     logger.info(f"Dataframe shape 1 {df_fetch.shape}")
     try:
