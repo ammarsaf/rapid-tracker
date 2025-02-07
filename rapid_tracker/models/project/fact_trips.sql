@@ -2,7 +2,7 @@
     config(materialized='table') 
 }}
 SELECT 
-    CAST(timestamp AS TIMESTAMP), 
+    TO_TIMESTAMP(CAST(timestamp as INT))::date as timestamp, 
     trip_id, 
     start_time, 
     driver_name, 

@@ -8,7 +8,7 @@ WITH date_vars AS (
         DATE(CURRENT_DATE - INTERVAL '1 day') AS yesterday
 ), 
 geo_table AS (
-    SELECT timestamp, 
+    SELECT TO_TIMESTAMP(CAST(timestamp as INT))::date as timestamp, 
             license_plate, 
             longitude, 
             latitude, 
