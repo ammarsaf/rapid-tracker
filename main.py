@@ -26,7 +26,7 @@ def task_1_fetch_api():
     df_fetch = rename_col(request_api_rapidkl("rapid-bus-kl", datetime.now()))
     logger = get_run_logger()
     logger.info(f"Dataframe shape 1 {df_fetch.shape}")
-    logger.info(f"DEBUG {datetime.now()} WOOIIIIIII")
+    logger.info(f"DEBUG WAKLU {datetime.now()} WOOIIIIIII")
     try:
         engine = connect_db_v2()
     except Exception as e1:
