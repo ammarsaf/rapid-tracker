@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 import os
 from main import main_flow
+from pathlib import Path
 
 load_dotenv(Path(f"{os.getcwd()}/.env"), override=True, verbose=True)
 
@@ -28,14 +29,15 @@ if __name__ == "__main__":
     #     credentials=GitHubCredentials.load("my-github-credentials-block"),
     #     branch="dev",
     # )
+    source_path = Path("../rapid-tracker")
+    print("INFO: path exist ", source_path.exists())
+    flow.from_source(
+        source=source_path,
+        entrypoint=f"{entry_file}:{entry_func}",  # Specific flow to run
+    ).deploy(
+        name="rapid-deployment",
+        work_pool_name="rapid-work-pool",
+        # cron="* * * * * sleep 30",  # Run every hour
+    )
 
-    # flow.from_source(
-    #     source=source,
-    #     entrypoint=f"{entry_file}:{entry_func}",  # Specific flow to run
-    # ).deploy(
-    #     name="rapid-deployment",
-    #     work_pool_name="rapid-work-pool",
-    #     # cron="* * * * * sleep 30",  # Run every hour
-    # )
-
-    main_flow.serve(name="rapid-deployment", tags=["dev"])
+    # main_flow.serve(name="rapid-deployment", tags=["dev"])

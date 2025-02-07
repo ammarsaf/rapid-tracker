@@ -22,10 +22,13 @@ export DBT_PROFILES_DIR=/<project>/<working>/<directory>
 ```
 
 4. Develop Prefect locally
+
+- Run with `<flow>.from_soruce(source=<if/local/use/project_path/else/githubrepoURL>).deploy()
 ```
 prefect server start 
 python deploy.py
 prefect work-pool create --type process my-work-pool # if not create, else ignore
+prefect worker start --pool "rapid-work-pool"
 prefect deployment run '<flow_function>/<deployment_name>'
 ```
 

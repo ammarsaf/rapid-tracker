@@ -6,7 +6,7 @@ rapid_tracker:
     prod:
       type: postgres
       host: localhost
-      user: ${POSTGRES_USER}
+      user: postgres # ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
       port: 54320
       dbname: rapidkl # or database instead of dbname
@@ -18,7 +18,7 @@ rapid_tracker:
     dev:
       type: postgres
       host: localhost
-      user: ${POSTGRES_USER}
+      user: postgres # ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
       port: 54320
       dbname: rapidkl # or database instead of dbname

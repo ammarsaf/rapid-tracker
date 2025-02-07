@@ -10,6 +10,7 @@ from prefect_dbt.cli.commands import DbtCoreOperation
 from dotenv import load_dotenv
 from pathlib import Path
 import os
+from datetime import datetime
 
 load_dotenv(Path(f"{os.getcwd()}/.env"), override=True, verbose=True)
 
@@ -25,6 +26,7 @@ def task_1_fetch_api():
     df_fetch = rename_col(request_api_rapidkl("rapid-bus-kl", datetime.now()))
     logger = get_run_logger()
     logger.info(f"Dataframe shape 1 {df_fetch.shape}")
+    logger.info(f"DEBUG {datetime.now()} WOOIIIIIII")
     try:
         engine = connect_db_v2()
     except Exception as e1:
@@ -55,9 +57,9 @@ def task_2_trigger_dbt():
     try:
         logger = get_run_logger()
         result = DbtCoreOperation(
-            commands=["dbt build"],
-            project_dir="/rapid-tracker/rapid_tracker/",
-            profiles_dir="/rapid-tracker/rapid_tracker/",
+            commands=["dbt debug", "dbt run"],
+            project_dir="../rapid-tracker/rapid_tracker/",
+            profiles_dir="../rapid-tracker/rapid_tracker/",
             overwrite_profiles=False,
         ).run()
         logger.info("DBT insertion completed")
