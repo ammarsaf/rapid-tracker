@@ -70,13 +70,9 @@ prefect deployment run '<flow_function>/<deployment_name>'
         - automate table creation ✅
         - cronjob ✅
         - containerize 
-    - Apache Superset - visualize data
+    - Metabase
+        - visualize data
+        - containerize
 - Dbt 
     - modularize sql script ✅
     - Dbt schema ✅
-
-
-**Improvement**
-- Data integrity during table insertion (bug from Pandas `.to_sql()`)
-- Just use native SQL without using `df.to_sql()` (its possible)
-- reduce GROUP BY and imply more window funcition OVER
