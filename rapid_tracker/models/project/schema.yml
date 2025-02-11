@@ -1,8 +1,71 @@
 version: 1
 
 models:
-  - name:
+  - name: fact_trips
     columns:
-      - name:
+      - name: timestamp
         test:
-          -
+          - not_null
+      - name: trip_id
+        test:
+          - not_null
+      - name: driver_name
+        test:
+          - not_null
+      - name: bus_plates
+        test:
+          - not_null
+      - name: route_id
+        test:
+          - not_null
+      - name: speed
+        test:
+          - not_null
+
+  - name: fact_history_cumulated
+    columns:
+      - name: driver_name
+        test:
+          - not_null
+      - name: date_warning
+        test:
+          - not_null
+      - name: date
+        test:
+          - not_null
+
+  - name: fact_history_warning
+    columns:
+      - name: driver_name
+        test:
+          - not_null
+      - name: date
+        test:
+          - not_null
+
+  - name: fact_driving_behavior
+    columns:
+      - name: date
+        test:
+          - not_null
+      - name: bus_plates
+        test:
+          - not_null
+      - name: driver_name
+        test:
+          - not_null
+      - name: sum_breach_daily
+        test:
+          - not_null
+
+  - name: fact_bus_maintenance
+    columns:
+      - name: date
+        test:
+          - not_null
+      - name: license_plate
+        test:
+          - not_null
+      - name: total_distance_km_today
+        test:
+          - not_null

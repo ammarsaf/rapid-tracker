@@ -128,7 +128,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+*.env
 .venv
 env/
 venv/
@@ -172,3 +172,9 @@ cython_debug/
 
 # file
 *.csv
+
+# dbt
+.user.yml
+# profiles.yml
+/logs
+/rapid-tracker-dev

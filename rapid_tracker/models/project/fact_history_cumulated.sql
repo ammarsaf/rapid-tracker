@@ -1,3 +1,7 @@
+{{
+	config(materialized='view')
+}}
+
 WITH 
 date_vars AS (
     SELECT 
@@ -14,20 +18,20 @@ driver_behavior AS (
 	        WHEN speed > 60 THEN 1
 	        ELSE 0
 	    END count_breach_speed
-	FROM rapidkl.fact_trips
+	FROM {{ ref('fact_trips')  }}
 	) hhh
 	WHERE count_breach_speed > 0
 ),
 yesterday AS (
 	SELECT *
-	FROM rapidkl.warning_cumulated
-	WHERE date = DATE(SELECT yesterday FROM date_vars)
+	FROM {{ ref('warning_cumulated') }}
+	WHERE date = (SELECT yesterday FROM date_vars)
 ), 
 today AS  (
 	SELECT 
 		*
 	FROM driver_behavior
-	WHERE date = DATE(SELECT today FROM date_vars)
+	WHERE date = (SELECT today FROM date_vars)
 	GROUP BY date, bus_plates, driver_name, count_breach_speed 
 )
 SELECT 
@@ -40,4 +44,4 @@ SELECT
 	COALESCE (t.date, y.date + INTERVAL '1 day') as date
 FROM today t
 FULL OUTER JOIN yesterday y
-ON t.driver_name = y.driver_name;
+ON t.driver_name = y.driver_name
