@@ -48,3 +48,8 @@ prefect deployment run '<flow_function>/<deployment_name>'
 <br>
 
 ![infra](infra.PNG)
+
+# TODO
+
+- [] Add more data (daily)
+- [] Convert bus density map -> current location map
