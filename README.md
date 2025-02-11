@@ -1,7 +1,13 @@
-# rapid-tracker
-ELT with RapidKL GTFS real-time API data monitor 
+# Rapid Tracker
 
-# Get Started
+- A monitoring dashboard of RapidKL GTFS real-time API data  
+- Data orchestrated through ELT using Dagster, Dbt and Metabase - instantiate with just docker compose!
+
+<br>
+
+![image](image.PNG)
+
+# Getting Started
 
 1. Create virtualenv and install packages
 ```
@@ -21,7 +27,7 @@ export DBT_PROJECT_DIR=/<project>/<working>/<dbt_directory>
 export DBT_PROFILES_DIR=/<project>/<working>/<directory>
 ```
 
-4. Develop Prefect locally
+4. Start data orchestration
 
 - Run with `<flow>.from_source(source=<if/local/use/project_path/else/githubrepoURL>).deploy()`
 ```
@@ -34,45 +40,11 @@ prefect deployment run '<flow_function>/<deployment_name>'
 
 3. Monitor visualization
 
-- Go to ---- localhost:xxx
+- Go to http://localhost:3000 to see the dasboard!
 
 
-# TODO
+# Data Orchestration Infrastructure
 
-**Functions**
-- request_api_rapidkl() ✅
-- query_db() ✅
-- fetch_db() ✅
+<br>
 
-**Table**
-- fact_daily_trip (append) ✅
-- fact_trips (append) ✅
-- dim_drivers (static) ✅
-- dim_busses (static) ✅
-- fact_driving_behavior (aggregate daily) ✅
-- fact_bus_maintenance (aggregate daily) ✅
-
-**Automate**
-- fact_daily_trip (30s) [order 1] ✅
-- fact_trips (30s) [order 2] ✅
-- dim_drivers ✅
-- dim_busses  ✅
-- fact_driving_behavior (1 day) [order 3] ✅
-- fact_bus_maintenance (1 day) [order 3] ✅
-
-**Infra**
-- Docker container 
-    - Postgres 
-        - database server ✅
-        - dev, stage (schema) ✅
-        - containerize ✅
-    - Dagster 
-        - automate table creation ✅
-        - cronjob ✅
-        - containerize 
-    - Metabase
-        - visualize data
-        - containerize
-- Dbt 
-    - modularize sql script ✅
-    - Dbt schema ✅
+![infra](infra.PNG)
